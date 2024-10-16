@@ -10,8 +10,15 @@ def exibirInfomacaoPokemon(data):
 def evolucaoPokemon():
     pass
 
-def exibirMovimentosPokemon():
-    pass
+def exibirMovimentosPokemon(data):
+    print("\nMovimetos do Pokémon:")
+    for ability in data['abilities']:
+        print(f"{ability['ability']['name']}")
 
-
+def MenuOpcao():
+    print("\nOpções de Status")
+    print(f"1.Digite o nome/id do Pokémon.")
+    print(f"2.Exibir as Infomações do Pokémon.")
+    print(f"3.Exibir os Movimentos do Pokémon.")
+    print(f"4.Sair do Programar.")
 
