@@ -27,31 +27,31 @@ def MenuOpcao():
     print(f"4.Sair do Programar.")
 
 
-def switch(opcao):
-    data = None
+def switch(opcao, data=None):
+    if opcao == 1:
+        pokemonR = input("Insira o nome/id do Pokémon:")
+        r = requisicaoHTTPDoPokemon(pokemonR)
 
-    match opcao:
-        case 1:
-            pokemonR = input("Insira o nome/id do Pokémon:")
-            r = requisicaoHTTPDoPokemon(pokemonR)
-            
-            #Verificação de conexão:
-            if r.status_code == 200:
-               data = r.json()
+        if r.status_code == 200:
+            data = r.json()
+        else:
+            print("Conexão falhou!")
+            return None
 
-            else:
-                print("Conexão falha!")
-                global escolha #Puxado variavel global do main.py;
-                escolha=4
-                
-        case 2:
-            exibirInfomacaoPokemon(data=data)
+    elif opcao == 2:
+        if data:
+            exibirInfomacaoPokemon(data)
+        else:
+            print("Nenhum Pokémon carregado!")
 
-        case 3:
-            exibirMovimentosPokemon(data=data)
+    elif opcao == 3:
+        if data:
+            exibirMovimentosPokemon(data)
+        else:
+            print("Nenhum Pokémon carregado!")
 
-        case _:
-            print("Digite uma opção inválido.")
-            print("Digite novamente.")
-            valido=int(input("Digite a sua escolha:"))
-            switch(valido)
+    else:
+        print("Opção inválida, tente novamente.")
+        return None
+    
+    return data
