@@ -1,5 +1,4 @@
 from funs import *
-from main import *
 
 def exibirInfomacaoPokemon(data):
     #Tem um paramntro de data para colocar o json do pokémon;
